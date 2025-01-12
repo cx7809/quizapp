@@ -1,11 +1,12 @@
-package com.example.quizapp.service;
+package com.example.quizapp.service.impl;
 
 import com.example.quizapp.dao.UserDAO;
 import com.example.quizapp.model.User;
+import com.example.quizapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -26,6 +27,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByEmail(String email) {
+        return userDAO.findByEmail(email);
+    }
+
+    @Override
     public void save(User user) {
         userDAO.save(user);
     }
@@ -38,10 +44,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(User user) {
         userDAO.delete(user);
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        return userDAO.findByEmail(email);
     }
 }
