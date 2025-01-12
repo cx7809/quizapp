@@ -6,17 +6,17 @@
 <body>
 <h2>Register</h2>
 <form method="post" action="/register">
-    <label>First Name:</label>
-    <input type="text" name="firstName" required>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required>
     <br>
-    <label>Last Name:</label>
-    <input type="text" name="lastName" required>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName">
     <br>
-    <label>Email:</label>
-    <input type="email" name="email" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
     <br>
-    <label>Password:</label>
-    <input type="password" name="password" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
     <br>
     <button type="submit">Register</button>
 </form>

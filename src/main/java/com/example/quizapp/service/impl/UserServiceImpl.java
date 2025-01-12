@@ -21,6 +21,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+        User existingUser = userDAO.findByEmail(user.getEmail());
+        if (existingUser != null) {
+            if ("SUSPENDED".equals(existingUser.getStatus())) {
+                throw new RuntimeException("This email is associated with a suspended account. Please contact support.");
+            }
+            throw new RuntimeException("Email already registered!");
+        }
         userDAO.save(user);
     }
 }
