@@ -17,6 +17,10 @@
 <c:if test="${not empty error}">
     <p style="color: red;">${error}</p>
 </c:if>
+<c:if test="${not empty message}">
+    <div style="color: green;">${message}</div>
+</c:if>
+
 <p>Don't have an account? <a href="/register">Register here</a></p>
 </body>
 </html>

@@ -24,5 +24,10 @@
     <p style="color: green;">${success}</p>
     <p><a href="/login">Click here to login</a></p>
 </c:if>
+
+<c:if test="${not empty error}">
+    <div style="color: red;">${error}</div>
+</c:if>
+
 </body>
 </html>

@@ -36,6 +36,7 @@ public class UserController {
             newUser.setRole(Role.USER);// Default role
             newUser.setStatus(Status.ACTIVE);  // Default status
             userService.save(newUser);
+            model.addAttribute("message", "Registration successful! Please log in.");
             return "login"; // Redirect to login after successful registration
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
