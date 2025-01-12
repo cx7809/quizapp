@@ -20,5 +20,9 @@
     <br>
     <button type="submit">Register</button>
 </form>
+<c:if test="${not empty success}">
+    <p style="color: green;">${success}</p>
+    <p><a href="/login">Click here to login</a></p>
+</c:if>
 </body>
 </html>
