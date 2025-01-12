@@ -7,34 +7,21 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-
 import java.util.Properties;
 
-
 @Configuration
-@PropertySource("classpath:application.properties")
 public class HibernateConfig {
-
-    @Autowired
-    private Environment env;
 
     @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-
-        // Scan for Hibernate entity classes
         sessionFactory.setPackagesToScan("com.example.quizapp.model");
 
-        // Hibernate properties
         Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
-        hibernateProperties.put("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
-        hibernateProperties.put("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
-
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        hibernateProperties.put("hibernate.show_sql", true);
+        hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
 
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;
