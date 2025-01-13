@@ -28,10 +28,12 @@ public class QuestionDAOImpl implements QuestionDAO {
     @Override
     public List<Question> getRandomQuestionsByCategory(String categorySlug, int limit) {
         String hql = "FROM Question q WHERE q.category.slug = :categorySlug ORDER BY RAND()";
-        return getCurrentSession()
+        List<Question> questions = getCurrentSession()
                 .createQuery(hql, Question.class)
                 .setParameter("categorySlug", categorySlug)
                 .setMaxResults(limit)
                 .getResultList();
+
+        return questions;
     }
 }

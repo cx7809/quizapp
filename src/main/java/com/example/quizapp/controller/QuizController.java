@@ -25,7 +25,6 @@ public class QuizController {
 
     @GetMapping("/{slug}")
     public String startQuiz(@PathVariable String slug, Model model) {
-        // 根据 slug 获取分类
         Category category = categoryService.getCategoryBySlug(slug);
         if (category == null) {
             return "error";
@@ -34,6 +33,6 @@ public class QuizController {
         List<Question> questions = questionService.getRandomQuestionsByCategory(slug, 5);
         model.addAttribute("category", category);
         model.addAttribute("questions", questions);
-        return "quiz"; // 指向 quiz.jsp
+        return "quiz";
     }
 }
