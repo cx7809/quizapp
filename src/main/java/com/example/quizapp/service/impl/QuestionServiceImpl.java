@@ -10,19 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private QuestionDAO questionDAO;
 
     @Override
-    @Transactional
-    public List<Question> getRandomQuestionsByCategoryId(Long categoryId) {
-        return questionDAO.findRandomQuestionsByCategoryId(categoryId);
+    public List<Question> getRandomQuestionsByCategory(String categorySlug, int limit) {
+        return questionDAO.getRandomQuestionsByCategory(categorySlug, limit);
     }
 
     @Override
-    @Transactional
     public void saveQuestion(Question question) {
         questionDAO.save(question);
     }

@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category findBySlug(String slug) {
+    public Category getCategoryBySlug(String slug) {
         return categoryDAO.findBySlug(slug);
     }
 

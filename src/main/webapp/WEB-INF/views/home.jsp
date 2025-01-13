@@ -9,11 +9,13 @@
 <ul>
     <c:forEach var="category" items="${categories}">
         <li>
-            <a href="/${category.slug}">${category.name}</a>
+            <h2>${category.name}</h2>
+            <a href="/quiz/${category.slug}" class="start-quiz-button">
+                <button>Start Quiz</button>
+            </a>
         </li>
     </c:forEach>
 </ul>
-
 <h2>Recent Quiz Results</h2>
 <p>Feature coming soon!</p>
 </body>

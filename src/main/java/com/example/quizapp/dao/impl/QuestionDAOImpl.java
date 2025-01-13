@@ -19,18 +19,19 @@ public class QuestionDAOImpl implements QuestionDAO {
         return sessionFactory.getCurrentSession();
     }
 
-    @Override
-    public List<Question> findRandomQuestionsByCategoryId(Long categoryId) {
-        String hql = "FROM Question WHERE category.id = :categoryId ORDER BY RAND()";
-        return getCurrentSession()
-                .createQuery(hql, Question.class)
-                .setParameter("categoryId", categoryId)
-                .setMaxResults(5)
-                .getResultList();
-    }
 
     @Override
     public void save(Question question) {
         getCurrentSession().saveOrUpdate(question);
+    }
+
+    @Override
+    public List<Question> getRandomQuestionsByCategory(String categorySlug, int limit) {
+        String hql = "FROM Question q WHERE q.category.slug = :categorySlug ORDER BY RAND()";
+        return getCurrentSession()
+                .createQuery(hql, Question.class)
+                .setParameter("categorySlug", categorySlug)
+                .setMaxResults(limit)
+                .getResultList();
     }
 }
