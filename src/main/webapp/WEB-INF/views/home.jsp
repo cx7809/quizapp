@@ -1,10 +1,20 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+    <title>Home Page</title>
 </head>
 <body>
-<h2>Welcome to the Quiz App!</h2>
-<p>Home page content goes here.</p>
+<h1>Quiz Categories</h1>
+<ul>
+    <c:forEach var="category" items="${categories}">
+        <li>
+            <a href="/category/${category.id}">${category.name}</a>
+        </li>
+    </c:forEach>
+</ul>
+
+<h2>Recent Quiz Results</h2>
+<p>Feature coming soon!</p>
 </body>
 </html>
