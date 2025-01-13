@@ -25,6 +25,7 @@ public class UserDAOImpl implements UserDAO {
                 .uniqueResult();
     }
 
+
     @Override
     public void save(User user) {
         getCurrentSession().saveOrUpdate(user);

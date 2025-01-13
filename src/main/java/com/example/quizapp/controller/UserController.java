@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 
@@ -53,6 +55,7 @@ public class UserController {
     @PostMapping("/login")
     public String handleLogin(@RequestParam String email,
                               @RequestParam String password,
+                              HttpSession session,
                               Model model) {
         try {
             User user = userService.findByEmail(email);
@@ -68,11 +71,26 @@ public class UserController {
                 model.addAttribute("error", "Your account is suspended. Please contact support.");
                 return "login";
             }
-            model.addAttribute("user", user);
-            return "home"; // Redirect to home after successful login
+
+            session.setAttribute("loggedInUser", user);
+            session.setAttribute("role", user.getRole());
+//            System.out.println("User Role: " + user.getRole()); // Testing
+
+            if (Role.ADMIN.equals(user.getRole())) {
+                return "redirect:/admin";
+            } else {
+                return "redirect:/home";
+            }
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "login";
         }
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
 }

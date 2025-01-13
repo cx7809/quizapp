@@ -1,3 +1,4 @@
+<%@ include file="navbar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
