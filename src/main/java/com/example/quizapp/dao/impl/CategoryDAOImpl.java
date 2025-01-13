@@ -23,4 +23,13 @@ public class CategoryDAOImpl implements CategoryDAO {
     public List<Category> findAll() {
         return getCurrentSession().createQuery("FROM Category", Category.class).getResultList();
     }
+
+    @Override
+    public Category findBySlug(String slug) {
+        return (Category) getCurrentSession()
+                .createQuery("FROM Category WHERE slug = :slug")
+                .setParameter("slug", slug)
+                .uniqueResult();
+    }
+
 }

@@ -20,4 +20,10 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> getAllCategories() {
         return categoryDAO.findAll();
     }
+
+    @Override
+    public Category findBySlug(String slug) {
+        return categoryDAO.findBySlug(slug);
+    }
+
 }
